@@ -1,0 +1,115 @@
+Which 2 classes are used to execute ....review review class 1 45+minute
+Feature file
+Step definition
+
+#Author: your.email@your.domain.com
+#Keywords Summary :
+#Feature: List of scenarios.
+#Scenario: Business rule through list of steps with arguments.
+#Given: Some precondition step
+#When: Some key actions
+#Then: To observe outcomes or validation
+#And,But: To enumerate more Given,When,Then steps
+#Scenario Outline: List of steps for data-driven as an Examples and <placeholder>
+#Examples: Container for s table
+#Background: List of steps run before each of the scenarios
+#“”" (Doc Strings)
+#| (Data Tables)
+#@ (Tags/Labels):To group Scenarios
+#<> (placeholder)
+#“”
+
+(Comments)
+#Sample Feature Definition Template
+
+The acceptance criteria comes from the client
+
+Keywords in gherkin language:
+-- Feature
+-- Scenario
+-- Scenario Outline with Examples keyword
+-- Given
+-- When
+-- And/But
+-- Then
+
+Step definition: the file that we actually provide the code to make sure that those gherkin steps are working.
+    Step definition can be provided in many languages. Implementation code using java.
+
+Which tools are we using for our framework?
+    maven - build management tool; why we need it? -
+
+What features are we using in our framework?
+
+In our Common Methods we can have some methods that we can overload
+
+--NoSuchFrameException - it is for a frame that is not there anymore
+
+For exceptions, we are using try-catch method
+What kind of exceptions we have?
+    - checked
+    - unchecked
+    Selenium Exceptions: Stale, noSuchElement
+    Java Exceptions: nullpointer, arithmetickal, missmatch, index out of bound
+
+
+Tarik:
+public static void switchToFrame(WebElement element) {
+    driver.switchTo().frame(element);
+}
+
+public static void switchToFrame(int index) {
+    driver.switchTo().frame(index);
+}
+
+public static void switchToFrame(String nameOrId) {
+    driver.switchTo().frame(nameOrId);
+}
+
+public static void selectDdValue(WebElement element, String textToSelectOrValue) {
+    Select select=new Select(element);
+    select.selectByVisibleText(textToSelectOrValue);
+}
+
+public static void selectDdValue(WebElement element, int index) {
+    Select select=new Select(element);
+    select.selectByIndex(index);
+
+public static void selectDdValue(WebElement element, String textToSelectOrValue) {
+    Select select=new Select(element);
+    select.selectByVisibleText(textToSelectOrValue);
+}
+
+public static void selectDdValue(WebElement element, int index) {
+    Select select=new Select(element);
+    select.selectByIndex(index);
+}
+
+
+Zulfia:
+public static void selectDdValue(WebElement element, String textToSelect) {
+    Select select = new Select(element);
+    List<WebElement> options = select.getOptions();
+    for (WebElement option : options) {
+        select.selectByVisibleText(textToSelect);
+    }
+}
+
+public static void selectDdValue(WebElement element, int index) {
+    Select select = new Select(element);
+    List<WebElement> options = select.getOptions();
+    for (WebElement option : options) {
+        select.selectByIndex(index);
+    }
+}
+
+
+Emilia:
+public static void dropDownByVisibleText(WebElement dropdownElement, String text){
+    Select select = new Select(dropdownElement);
+    select.selectByVisibleText(text);
+}
+
+
+** Maintainability for the WebElements we use POM
+Concept of POM - for each page of the application we're creating a class where we're going to store all WebElements

@@ -1,0 +1,77 @@
+Cucumber Class 7
+
+** always check the version of cucumber
+    Sometimes if we try to get the most updated version of any tool it is having some instabilities.
+    In this case go with the stable version (the one with the maximum number of downloads)
+    In this particular example (dashboard page) we were having cucumber-java and cucumber-junit  7.2.3 version
+    and we downgraded to 6.9.1 (check Maven Repository/cucumber)
+io.cucumber.datatable.UndefinedDataTableTypeException: Can't convert DataTable to List<java.lang.String>.
+Please review these problems:
+
+ - There was a table cell transformer for java.lang.String but the table was too wide to use it.
+   Please reduce the table width to use this converter.
+
+ - There was no table entry or table row transformer registered for java.lang.String.
+   Please consider registering a table entry or row transformer.
+
+Note: Usually solving one is enough
+
+	at io.cucumber.datatable.UndefinedDataTableTypeException.listNoConverterDefined(UndefinedDataTableTypeException.java:102)
+	at io.cucumber.datatable.DataTableTypeRegistryTableConverter.toList(DataTableTypeRegistryTableConverter.java:144)
+	at io.cucumber.datatable.DataTable.asList(DataTable.java:199)
+	at io.cucumber.datatable.DataTable.asList(DataTable.java:187)
+	at steps.DashboardSteps.user_verifies_all_the_dashboard_tabs(DashboardSteps.java:31)
+	at ✽.user verifies all the dashboard tabs(file:///D:/Nush%20SDET%20Course/Eclipse/CucumberFrameworkBatch12/src/test/resources/features/Dashboard.feature:8)
+
+
+Recap:
+-- Hooks - to write pre-conditions and post conditions of the project; we always write hooks under steps package
+    2 types of Hooks: @Before nad @After
+-- Background vs Hooks --> Background is applicable to one feature file; Hooks applicable to the entire project
+-- Data driven testing:
+    -- using examples table and scenario outline
+    -- using data table
+
+
+
+What is the difference between verification and validation?
+Verification - check the existence
+Validation - check the functionality of the particular element
+    Example:
+    click button - if it is present or not - this is the verification
+                 - if it is clickable or not, if it is directing you to the next page or not - this is the validation
+
+Assertions - we generally use to identify, to verify elements.
+We're using the Assertions from junit, because cucumber needs junit to execute code
+Types of Assertions:
+    -- with TestNG
+    -- with junit (junit is like father) - 2 types:
+        1. Comparison - comparing 2 identities; one from the feature file with the one from the application after execution
+        2. Existence - whether the webelement os available or not; boolean condition
+
+Data driven testing (DDT) - execute one test case across multiple data sets
+    -- Data table
+    -- Examples table
+    -- Excel file - for large volume of data. There are 2 extensions: .xls (older version) and .xlsx (upgraded version)
+    The new XSSF supported Excel 2007 OOXML (.xlsx) files are XML based, the memory footprint for processing them is higher
+    than for the older HSSF supported (.xls) binary files.
+
+    In order to work vith excel files, we have to add few dependencies from maven repository in our pom.xml file
+        1. Apache poi --> Apache POI Common » 4.1.2 (org.apache.poi --> no)
+        Search for poi ooxml --> Apache POI API Based On OPC and OOXML Schemas » 4.1.2 is the correct one
+        2. commons io --> Apache Commons IO » 2.8.0
+
+Taking screenshots:
+In order to have a proof of the testing we need to take screenshots. To do this we're creating a method takeScreenshot()
+in CommonMethods.
+Generally the screenshot accept the array of byte.
+To store the screenshots from the entire project, we have to create a new directory on the framework level outside of src.
+Since the path to this directory will be a constant through the whole project, we'll keep it in our
+Constants class under utils package
+To have unique name to each and every screenshot and avoid overriding, we simply create getTimeStamp() method in our
+CommonMethods. In this method we provide date and time format. Then we pass it in the mane of the new .png file we'll save.
+Use the method takeScreenshot() in Hooks class before closing the browser.
+
+Scenario class holds the complete information of the whole execution whether it is passed, failed etc.
+
+Post-condition in Cucumber Framework -

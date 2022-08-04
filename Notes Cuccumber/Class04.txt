@@ -1,0 +1,29 @@
+Class 4
+Recap
+Common methods class in our framework
+sendText method, click etc
+in Constants class we provide implicit wait, explicit wait values and test data path
+
+POM - Page Object Model is a design pattern. According to POM we create page classes for all the screens available
+in the application which we're going to test
+
+FRAMEWORK --> when we're talking about framework we should not pass anything hardcoded. We should start from one place
+that is our method and it is parametrized. When all methods are parametrized, than the entire framework is parametrized
+    Definition is linked with declaration! Order doesn't matter
+2 main directories in the project --> Java(technical) and resources(non-technical)
+testdata directory --> we'll keep all the data files in there (excel,xml, Text)
+
+utils contains:
+--> constants - here we'll be providing unique paths. This class will keep all values that we do not want to be hardcoded.
+Created like this it will help if we need to change something. Example: file path - if it's hardcoded and we change the
+location it will create errors,
+but if it is in the constants class, it'll be easily maintained
+--> Common methods - it is simply common functionality. We are using java concepts. With the help of Polymorphism
+this class will allow us to override the parameters. here we'll keep all common functionality and we will extend this
+Common class everywhere. In the common methods class we can provide methods like click, JSclick, SendText, Screenshot etc
+and then we'll be able to use those while calling them and passing different parameters
+**In common methods we're calling page initializers method. This method is going to call the objects of page classes
+which will call the constructor and this constructor will initialize all the web elements!
+
+
+

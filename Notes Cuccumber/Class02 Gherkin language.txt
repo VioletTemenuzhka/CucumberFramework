@@ -1,0 +1,85 @@
+Gherkin language
+
+every Test case is considered as one Scenario
+
+Keywords:
+-- Given - pre condition - a point from where we can start executing our test case
+-- When - actions we need to perform - start testing
+-- And - supporting tag - can be used whit any of the other keywords
+-- Then - expected results - acceptance criteria
+
+Recap:
+What is Framework? - an organized structure of folders and packages which allows us to write clean and maintainable code
+Which is the Built management tool? - maven
+What is the main configuration file in maven project? - pom.xml
+Functions of pom.xml file:
+    - add dependency
+    - we can execute our code from pom.xml file
+    - it connects our entire project to the central repository of maven, so we don't need to add jars
+    - this maven project creates .m2 folder in our machine that automatically gets a load on the dependencies
+    of a particular tool which we mention
+
+Maven project:
+There are 2 folders:
+    main - used to write the code for development (we don't need this folder, we're not devs)
+    test - used to write the code to test the application. Under test we have 2 branches:
+        1. java - for technical or coding
+        2. resources - for non technical / non coding
+
+Cucumber
+-- Cucumber as a tool
+    Cucumber works with junit (junit is for execution; it is a parent tool)
+    Cucumber supports BDD
+    We use gherkin language (plain english text to write the scenario)
+
+Scenario - one test case means one scenario
+Given -- pre condition
+When -- actions
+And -- supporting tag
+Then -- expected results
+
+One user story can have multiple scenarios.
+    Example: Login is an US, and positive login, negative login, blank login are the different scenarios
+We're writing 2 scenarios, because there are two different test cases (finding by id and finding by name)
+
+User story US 12345 - Employee search
+Scenario - Search employee by id
+Given user is navigated to HRMS Application
+When user enters valid admin credentials
+And user clicks on login button
+And user navigates to employee list page
+When user enters valid employee id
+And clicks on search button
+Then user is able to see employee information
+
+Scenario - Search employee by name
+Given user is navigated to HRMS Application
+When user enters valid admin credentials
+And user clicks on login button
+And user navigates to employee list page
+When user enters valid employee name
+And clicks on search button
+Then user is able to see employee information
+
+The file where we write the BDD scenarios is feature file! This file has .feature extension
+All the scenarios we'll write in .feature files. The very first thing we have to do in a .feature file is:
+-- Feature: --> this is the name of the feature; the functionality we're going to test
+    in one Feature we can write multiple test cases
+    -- Scenario: --> the name of the scenario; the ways how we're
+        -- Given
+        -- When
+        -- And
+        -- Then
+when we create the Feature this is just the skeleton without any actions behind.
+
+**Abstraction concept:
+    Declaration --> method without body
+    Definition --> method with body
+
+In the .feature file all the steps will be highlighted if there is no definition.
+To see the definition right click on the step --> Go To --> Declaration or Usages
+
+We have to parametrize, not to hardcode anything even launching the browser
+
+What is static? - we don't need to create the object of the class; we cna call it directly anywhere by the className
+

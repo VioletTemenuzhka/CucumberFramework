@@ -1,0 +1,20 @@
+Class 3
+Recap:
+We're using .feature file to write our scenarios using gherkin language
+Keywords in gherkin language we use: given, when, and, then, scenario, feature
+In the feature file we declare the steps and then we need to define them. We simply execute the feature file and after
+that we provide definition of the steps in java folder
+All the feature files we keep in a directory (features in our resources directory) in our framework
+Every single scenario is a test case
+
+
+Constants - in this class we provide the standart organized structure, that we don't have to change
+we simply provide unique paths
+CommonMethods - polymorphism in java and we'll use it
+CommonMethods class in our framework is used to write all the methods we will be using in the majority of scenarios
+(Code reusabillity)
+
+Use of polymorphism in our project --> click method in our CommonMethods class
+        --> we are overloading it when passing different WebElements
+
+duplication of step definition will not work

@@ -1,0 +1,35 @@
+Class 5
+Recap
+Creating multiple steps classes for multiple feature files
+POM - page object model design pattern
+
+In Common Methods we're calling page initializers method. This method is going to call the objects of page classes
+which will call the constructor and these constructors will initialize all the web elements
+
+pages contain:
+PageInitializer class --> here we'll create all objects of the classes
+
+runners contain:
+Runner class - will allow us to run all of our scripts in one time. In our framework we're creating Runners package in java
+
+Single point execution
+
+Smoke test - take some test cases to see if the to check for the functionality 15-20 test cases
+regression - we use it when new
+
+Difference between bug an issue is:
+when the devs are working in the development environment it is called issue, because it is still under development
+but if the same thing is sent to Qa/test environment and then the issue occurs, this is called bug in the applications
+
+2 things you'll execute in practice
+smoke scenario --> if it has the key functionality of the application
+regression scenario --> by default all scenarios belong to regression
+So make @smoke @regression tags in the feature file for each scenario
+Also create Regression and Smoke classes under the runners package to be more organized
+
+We have to utilize the code reusability as much as we can!!!
+
+Background functionality - the scenario flow has to be the same; the part that have common part.
+If the flow of the test case changed, even if we have 100 common parts,
+we cannot take it tho the background is a part that will execute before every scenario
+ONE Background feature for ONE feature file

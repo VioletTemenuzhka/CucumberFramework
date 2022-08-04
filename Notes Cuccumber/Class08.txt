@@ -1,0 +1,151 @@
+Class 8-9
+Recap:
+- passing the data from excel file
+- taking screenshots
+
+
+Report
+Artifact == report
+How do we add reports to our framework? - we'll use RunnerClass to provide the plugin
+-- plugin = {"html:target/cucumber.html","pretty", "json:target/cucumber"}
+-- "html:target/cucumber.html" --> html report in target folder; it's a cucumber report .html file
+-- "pretty" --> adds the steps (description and definition) which you are executing in the console
+-- "json:target/cucumber.json" --> colorfull report
+            json --> java script object notation
+
+-- pom.xml --> other than adding all the dependencies, we'll be using it to run the test cases
+Maven is a build management tool!! Mainly this tool is for developers. If BUILD SUCCESS (which means no error in the project at all)
+message is not present after running the test, devs can not commit the code in the repository
+Build management tool simply means that you consider your entire project as a single build.
+You don't execute multiple classes, methods, files etc, you execute just ONE file that will work for the entire project
+The backbone of a project is pom.xml
+
+-- maven surefire plugin --> we use it to make our entire project a single build;
+    we need to add it in the pom.xml in order to use it for executing test cases
+    To add maven surefire plugin:
+    open your browser --> maven surefire plugin --> Maven Surefire Plugin – Introduction --> Using TestNG -->
+    --> Using Suite XML Files --> copy the code from <plugins> to </plugins> --> paste it after </dependencies> tag in your pom.xml -->
+    --> remove [...] from the copied code --> place it inside <build></build> --> change <suiteXmlFiles> to <includes> -->
+    --> change <suiteXmlFile> to <include> --> after </includes> add <testFailureIgnore>true</testFailureIgnore>
+
+  <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>3.0.0-M6</version> //if this version is red, try with M5 or M4
+                <configuration>
+                    <includes>
+                        <include>testng.xml</include> //here is the file we want to execute. Provide the path to RunnerClass
+                    </includes>
+                    <testFailureIgnore>true</testFailureIgnore>
+                </configuration>
+            </plugin>
+        </plugins>
+   </build>
+
+-- path to RunnerClass:
+    **/*RunnerClass.java --> where ** is the project directory
+                                   / means under you project directory
+                                   * the package under project directory
+                                   RunnerClass.java is the name of the class
+                           Provide the exact name of the class you need to execute
+
+
+
+-- target folder --> contains all the reports from the framework. The advantage is
+How to open the report? - right click on it --> Open in --> browser --> Chrome
+
+-- the report will override the previous one --> the advantage is when you execute multiple times
+   this report you can use for temporary purpose
+
+-- negative testing --> when you make the test intentionally failed
+
+How to execute the pom.xml file? --> click on the Maven in the upper right corner in intellij -->
+extract your project (you have to see Lifecycle, Plugins, Dependencies) --> click on Lifecycle --> by double-clicking on test
+the entire project will start executing
+
+Maven mojo for the cucumber reporting:
+open your browser --> search for maven cucumber report --> open GitHub - damianszczepanik/maven-cucumber-reporting -->
+ - put this into your pom.xml and run mvn verify so cucumber reports will be generated in target/cucumber-html-reports -->
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <configuration>
+                    <testFailureIgnore>true</testFailureIgnore>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>net.masterthought</groupId>
+                <artifactId>maven-cucumber-reporting</artifactId>
+                <version>(check version above)</version>
+   //to check the version above means to check it in the GitHub repo from where you copied this plugin
+                <executions>
+                    <execution>
+                        <id>execution</id>
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                        <configuration>
+                            <projectName>cucumber-jvm-example</projectName>
+                            <!-- optional, per documentation set this to "true" to bypass generation of Cucumber Reports entirely, defaults to false if not specified -->
+                            <skip>false</skip>
+                            <!-- output directory for the generated report -->
+                            <outputDirectory>${project.build.directory}</outputDirectory>
+                            <!-- optional, defaults to outputDirectory if not specified -->
+    // remove jsonReports from <inputDirectory>
+                            <inputDirectory>${project.build.directory}/jsonReports</inputDirectory>
+                            <jsonFiles>
+                                <!-- supports wildcard or name pattern -->
+                                <param>**/*.json</param>
+                            </jsonFiles>
+
+     // Remove all of the following lines
+                            <!-- optional, defaults to outputDirectory if not specified -->
+                            <classificationDirectory>${project.build.directory}/classifications</classificationDirectory>
+                            <classificationFiles>
+                                    <!-- supports wildcard or name pattern -->
+                                    <param>sample.properties</param>
+                                    <param>other.properties</param>
+                            </classificationFiles>
+                            <parallelTesting>false</parallelTesting>
+                            <!-- optional, set true to group features by its Ids -->
+                            <mergeFeaturesById>false</mergeFeaturesById>
+                            <!-- optional, set true to get a final report with latest results of the same test from different test runs -->
+                            <mergeFeaturesWithRetest>false</mergeFeaturesWithRetest>
+                            <!-- optional, set true to fail build on test failures -->
+                            <checkBuildResult>false</checkBuildResult>
+     // until here
+
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+
+Execute the project from POM.xml file. Go in target folder and check the cucumber-html-reports. You are interested in
+overview-features.html. Open it with right click --> open in --> browser --> Chrome
+
+After each execution and before opening the report, reload from Disk.
+
+When BUILD FAILED after running from pom.xml, you need to rerun the failed test cases.
+In order to do this, add another tag in the runner class "rerun". It will automatically generate one text file that will be having
+all the failed test cases from the group of all test cases.
+-- "rerun:target/failed.txt" --> it will run again the failed scenarios
+
+Execution from command prompt: open the folder where the project is; where the pom.xml file is. Type cmd in the path
+field and press enter. Or you can navigate to the project via command prompt using basic unix commands.
+1. mvn clean --> clean the project/ cleans your target folder/ removes all the previous reports/ removes all the bulky data
+2. When we get the message BUILD SUCCESS, then we will run anything
+3. mvn test --> command to execute our test cases
+-- if you want to override the tag based on the cmd part. When don't want to change anything from the Runner class,
+but override the tag from the command prompt itself, type the following command:
+4. mvn test Dcucmber.options="--tags @latest"
+5. mvn clean verify -Dcucmber.filter.tags="@theNameOfTheTagYouUse"
+
+-- clean - cleans your target folder
+-- test - executes the test cases
+-- verify - verifies your code
+-- package - convert your code to packages

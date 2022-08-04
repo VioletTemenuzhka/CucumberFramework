@@ -1,0 +1,235 @@
+[
+  {
+    "line": 1,
+    "elements": [
+      {
+        "line": 3,
+        "name": "",
+        "description": "",
+        "type": "background",
+        "keyword": "Background",
+        "steps": [
+          {
+            "result": {
+              "status": "undefined"
+            },
+            "line": 4,
+            "name": "a JWT is generated",
+            "match": {},
+            "keyword": "Given "
+          }
+        ]
+      },
+      {
+        "start_timestamp": "2022-07-22T16:20:47.608Z",
+        "before": [
+          {
+            "result": {
+              "status": "passed"
+            },
+            "match": {
+              "location": "steps.Hooks.start()"
+            }
+          }
+        ],
+        "line": 8,
+        "name": "Adding an employee",
+        "description": "",
+        "id": "this-feature-cover-all-the-api-related-scenarios;adding-an-employee",
+        "after": [
+          {
+            "result": {
+              "status": "passed"
+            },
+            "match": {
+              "location": "steps.Hooks.end(io.cucumber.java.Scenario)"
+            }
+          }
+        ],
+        "type": "scenario",
+        "keyword": "Scenario",
+        "steps": [
+          {
+            "result": {
+              "status": "skipped"
+            },
+            "line": 9,
+            "name": "a request is prepared to create an employee",
+            "match": {},
+            "keyword": "Given "
+          },
+          {
+            "result": {
+              "status": "skipped"
+            },
+            "line": 10,
+            "name": "a POST call is made to create an employee",
+            "match": {},
+            "keyword": "When "
+          },
+          {
+            "result": {
+              "status": "skipped"
+            },
+            "line": 11,
+            "name": "the status code for the created employee is 201",
+            "match": {},
+            "keyword": "Then "
+          },
+          {
+            "result": {
+              "status": "skipped"
+            },
+            "line": 12,
+            "name": "the employee created contains key \"Message\" and value \"Employee Created\"",
+            "match": {},
+            "keyword": "And "
+          },
+          {
+            "result": {
+              "status": "skipped"
+            },
+            "line": 13,
+            "name": "the employee id \"Employee.employee_id\" is stored as a global variable to be used for other calls",
+            "match": {},
+            "keyword": "And "
+          }
+        ],
+        "tags": [
+          {
+            "name": "@api"
+          }
+        ]
+      },
+      {
+        "line": 3,
+        "name": "",
+        "description": "",
+        "type": "background",
+        "keyword": "Background",
+        "steps": [
+          {
+            "result": {
+              "status": "undefined"
+            },
+            "line": 4,
+            "name": "a JWT is generated",
+            "match": {},
+            "keyword": "Given "
+          }
+        ]
+      },
+      {
+        "start_timestamp": "2022-07-22T16:20:47.733Z",
+        "before": [
+          {
+            "result": {
+              "status": "passed"
+            },
+            "match": {
+              "location": "steps.Hooks.start()"
+            }
+          }
+        ],
+        "line": 16,
+        "name": "Get the newly created employee",
+        "description": "",
+        "id": "this-feature-cover-all-the-api-related-scenarios;get-the-newly-created-employee",
+        "after": [
+          {
+            "result": {
+              "status": "passed"
+            },
+            "match": {
+              "location": "steps.Hooks.end(io.cucumber.java.Scenario)"
+            }
+          }
+        ],
+        "type": "scenario",
+        "keyword": "Scenario",
+        "steps": [
+          {
+            "result": {
+              "status": "skipped"
+            },
+            "line": 17,
+            "name": "a request is prepared to get the employee",
+            "match": {},
+            "keyword": "Given "
+          },
+          {
+            "result": {
+              "status": "skipped"
+            },
+            "line": 18,
+            "name": "a GET call is made to retrieve the created employee",
+            "match": {},
+            "keyword": "When "
+          },
+          {
+            "result": {
+              "status": "skipped"
+            },
+            "line": 19,
+            "name": "the status code for this employee is 200",
+            "match": {},
+            "keyword": "Then "
+          },
+          {
+            "result": {
+              "status": "skipped"
+            },
+            "line": 20,
+            "name": "the employee we are getting having ID \"employee.employee_id\" must match with the globally stored employee id",
+            "match": {},
+            "keyword": "And "
+          },
+          {
+            "result": {
+              "status": "skipped"
+            },
+            "line": 21,
+            "name": "the retrieved data at \"employee\" object matches the data used to create the employee having employee id \"employee.employee_id\"",
+            "match": {},
+            "rows": [
+              {
+                "cells": [
+                  "emp_firstname",
+                  "emp_lastname",
+                  "emp_middle_name",
+                  "emp_gender",
+                  "emp_birthday",
+                  "emp_status",
+                  "emp_job_title"
+                ]
+              },
+              {
+                "cells": [
+                  "Tiana",
+                  "BR",
+                  "Hill",
+                  "Female",
+                  "2000-08-16",
+                  "Probation",
+                  "QA"
+                ]
+              }
+            ],
+            "keyword": "And "
+          }
+        ],
+        "tags": [
+          {
+            "name": "@api"
+          }
+        ]
+      }
+    ],
+    "name": "This feature cover all the API related scenarios",
+    "description": "",
+    "id": "this-feature-cover-all-the-api-related-scenarios",
+    "keyword": "Feature",
+    "uri": "file:src/test/resources/features/APIWorkflow.feature",
+    "tags": []
+  }
+]

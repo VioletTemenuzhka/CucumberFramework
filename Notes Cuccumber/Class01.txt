@@ -1,0 +1,43 @@
+Cucumber Class 01
+
+What is Framework?
+ - distributed arrangement
+ - no dependency of main method
+ -
+ -
+
+Cucumber as a tool
+Cucumber as a framework
+
+What is POC? - Proof of concept. It is a small peece of framework. It shows the functionality
+What is DDT? - Data-driven testing. Whe we execute our peece of code/script across multiple data sets
+    Data-driven testing is the creation of test scripts to run together with their related data sets in a framework.
+
+Benefits of Test Automation Framework:
+    - Improved test efficiency
+    - Lower maintenance costs
+    - Minimal manual intervantion
+    - Maximum test coverage
+    _ Reusability of code
+
+Branches in the scr folder:
+    main - develop the application in here
+        java - coding part
+        resources - non coding part
+    test - test the application in here
+
+No more jar files to be added. All is coming from maven repository.
+Just need to add <dependencies> and copy/paste the desired version from mvn repo
+
+-- group ID - automatization name
+-- artifact Id - project name
+
+* If you work for a company with very confidential information like for the government, they will not allow you to open google for example.
+In this case, you need to ask for permission in order to connect with the maven cloud repo. Usually whe work for confidential
+clients, there is an internal repo that is connected directly to maven central pero with a lot of security checks.
+
+Object carry state and behaviour where state is the variable and behavior are the functions/method
+
+What is BDD? - Behavior driven development. Creating something that is based on the behavior
+
+

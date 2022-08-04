@@ -1,0 +1,62 @@
+Class 6
+Recap
+Runner class - we use this class to execute test cases in cucumber
+Runner class and cucumber need junit for complete execution
+
+Cucumber options:
+-- features - in features we provide the path to all the feature files
+-- glue - with glue we provide the path to step definitions
+-- dryRun - by default the value of dryRun is false which means it is disabled. dryRun we use to get the step definitions
+            of undefined steps. If we set it to true, it stops actual execution and will quickly scan all gherkin steps
+            whether they are implemented or not. To execute scripts in real time, we should set this value to false
+-- monochrome - if it is set to true, it removes all the irrelevant information from the console
+-- tags - we use them to execute scenarios in different groups (@regression, @smoke, @test, @sprint etc)
+        -- we use OR and AND to execute scenarios from 2 or more different groups together
+
+Background --> it is restricted to one feature file. We are butting common steps from scenarios in the background
+
+Hooks --> is a concept of Cucumber: We use Hooks class to provide pre condition and post condition to all the scenarios.
+It is applicable for the entire project, not just for one Feature file, or one Scenario.
+    Hooks class always extends CommonMethods class
+    We always create Hooks class in our steps package only.
+    In Hooks class we use only 2 annotations:
+        -- @Before - (pre condition) import class from io.cucumber.java.Before;
+        -- @After - (post condition) import class from io.cucumber.java.After;
+
+Order of execution in cucumber with Hooks concept:
+    1. Hooks
+    2. Background
+    3. Scenario
+
+** Object repository depends on the concept whatever page is available there, we have to find it and to define that
+particular element in that class only.
+
+The framework we're working is hybrid framework that supports BDD testing as well as DDT (data driver testing)
+Data driven testing - the meaning of DDT is you execute one test case across multiple data sets. Test based on the data.
+Which means that with one script you should be able to add multiple employees for example or payment types
+
+INTERVIEW QUESTION: What type of framework are you using? - hybrid framework that supports Behavior Driven Testing (BDT)
+    as well as Data-driven testing (DDT)
+
+Scenario Outline: testing the same scenario with different sets of data; we can use it to enter multiple employees for
+example. Using Scenario Outline we can provide keys like so:
+            --> "<nameOfTheKey>" --> example "<firstName>" "<middleName>" "<lastName>"
+    but also we have to provide values to the keys. In order to do that we are using the keyword Examples. While using
+    Examples: keyword we have to provide the value for the key in a table as follows using | between the keys:
+    --> Examples table --> Hooks and Background execute multiple times with the next data from the iteration
+        Examples:
+        |firstName|middleName|lastName|
+        |Asel     |MS        |Tolga   |
+        |Yazgul   |MS        |Kishan  |
+        |Tarik    |MS        |Mujeeb  |
+    If the color is the same, the values we're passing are the same
+
+    Using this approach to add multiple data the script will execute as many times as the data you are passing in the table.
+    In this case: Hooks will execute 3 times, Background will execute 3 times, Scenario will execute 3 times (DDT)
+
+    --> Data table --> Hooks and Background execute one time and the step (data table) will execute multiple times
+        |firstName|middleName|lastName|
+        |asel     |MS        |tolga   |
+        |yazgul   |MS        |kishan  |
+        |tarik    |MS        |mujeeb  |
+
