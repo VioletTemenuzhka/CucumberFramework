@@ -9,7 +9,11 @@ public class LoginPage extends CommonMethods {
 
     //object repository
     @FindBy(id = "txtUsername")
-    public WebElement usernameBox;
+    private WebElement usernameBox;
+
+    public WebElement getUsernameBox(){
+        return usernameBox;
+    }
 
     @FindBy(name = "txtPassword")
     public WebElement passwordBox;

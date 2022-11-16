@@ -31,8 +31,8 @@ public class EmployeeSearchSteps extends CommonMethods {
        // sendText(usernameField, ConfigReader.getPropertyValue("username"));
         //line 30 we're passing the value by reading the data from the config file in the configReader
         // using the getPropertyValue method that we created
-        sendText(login.usernameBox, ConfigReader.getPropertyValue("username"));
-
+        //ENCAPSULATION example:getUsernameBox() is a public method to get the private element from the login page
+        sendText(login.getUsernameBox(), ConfigReader.getPropertyValue("username"));
         //WebElement passwordField = driver.findElement(By.id("txtPassword"));
         //passwordField.sendKeys(ConfigReader.getPropertyValue("password"));
         //sendText(passwordField,ConfigReader.getPropertyValue("password"));
